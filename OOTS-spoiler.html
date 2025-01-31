@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" type="image/png" href="sets/OOTS-files/icon.png"/>
+	<link rel="stylesheet" href="/resources/header.css">
+	<title>OOTS visual spoiler</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overscroll-behavior: none;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.main-content {
+			position: relative;
+			width: 100%;
+			float: left;
+			z-index: 2;
+			justify-items: center;
+		}
+		.sidebar {
+			position: sticky;
+			top: 0;
+			display: none;
+			text-align: center;
+			padding-right: 3%;
+			z-index: 1;
+			justify-items: center;
+		}
+		.sidebar-container {
+			width: 80%;
+			max-width: 375px;
+			position: relative;
+		}
+		.sidebar-h-img {
+			display: none;
+			transform: rotate(90deg);
+			position: absolute;
+			left: 10%;
+			top: 10%;
+			width: 85%;
+		}
+		.sidebar-img {
+			vertical-align: middle;
+			width: 100%;
+		}
+		.close-btn {
+			background: url('img/close.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 10%;
+			height: 10%;
+			border: none;
+			cursor: pointer;
+			position: absolute;
+			right: 4%;
+		}
+		.close-btn:hover {
+			background: url('img/close-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+			gap: 2px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-bottom: 3%;
+			justify-items: center;
+			max-width: 1200px;
+		}
+		.grid-container img {
+			width: 100%;
+			height: auto;
+			display: block;
+			visibility: hidden;
+			cursor: pointer;
+		}
+		.banner {
+			width: 100%;
+			height: auto;
+			padding-top: 20px;
+			padding-bottom: 50px;
+		}
+		.logo {
+			display: block;
+			margin: auto;
+			max-width: 30%;
+			max-height: 320px;
+		}
+		.container {
+			position: relative;
+			width: 100%;
+		}
+		.container img {
+			width: 100%;
+			height: auto;
+		}
+		.flip-btn {
+			background: url('img/flip.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+			width: 15%;
+			height: 11%;
+			cursor: pointer;
+			border: none;
+			position: absolute;
+			left: 50%;
+			top: 48%;
+			transform: translate(-50%, -50%);
+			opacity: 0.5;
+		}
+		.flip-btn:hover {
+			background: url('img/flip-hover.png') no-repeat;
+			background-size: contain;
+			background-position: center;
+		}
+		.icon-bar {
+			display: grid;
+			grid-template-columns: repeat(10, 3fr 2fr) 3fr;
+			gap: 1px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-top: 2%;
+			padding-bottom: 1%;
+			justify-items: center;
+			align-items: center;
+		}
+		.icon-bar .icon img {
+			width: 90%;
+			max-width: 80px;
+			height: auto;
+			display: block;
+			padding: 5%;
+			margin: auto;
+			text-align: center;
+		}
+		.icon-bar .dot img {
+			width: 50%;
+			max-width: 65px;
+			height: auto;
+			display: block;
+			margin: auto;
+			text-align: center;
+		}
+		.preload-hidden {
+			display: none;
+		}
+		/* This is here to enable the stickiness in a Float environment. I don't know why it works but it does */
+		.footer {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<img class="preload-hidden" src="/img/dot.png" />
+	<img class="preload-hidden" src="/sets/OOTS-files/logo.png" />
+	<img class="preload-hidden" src="/sets/OOTS-files/icon.png" />
+		<div class="header">
+		<div class="search-grid">
+			<a href="/"><img class="sg-logo" src="/img/banner.png"></a>
+			<img class="sg-icon" src="/img/search.png">
+			<input type="text" inputmode="search" placeholder="Search ..." name="search" id="search" spellcheck="false" autocomplete="off" autocorrect="off" spellcheck="false">
+			<a href="/all-sets"><img src="/img/sets.png" class="sg-icon">Sets</a>
+			<a href="/deckbuilder"><img src="/img/deck.png" class="sg-icon">Deckbuilder</a>
+			<a onclick="randomCard()"><img src="/img/random.png" class="sg-icon">Random</a>
+		</div>
+	</div>
+
+	<div class="icon-bar">
+			<div class="icon"><a href="OOTS-spoiler"><img src="sets/OOTS-files/icon.png"></img></a></div>
+
+		</div>
+		<div class="banner">
+		<img class="logo" src="sets/OOTS-files/logo.png">
+		</div>
+		<div class="main-content" id="main-content">
+			<div class="grid-container">
+				<div class="container"><img alt="sets\OOTS-files\img\38_MW01 — The Southern Pantheon.png" id="38_MW01 — The Southern Pantheon" data-flag="@X" onclick="openSidebar('38_MW01 — The Southern Pantheon',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\77_MU01 — Odin, Far-Sighted.png" id="77_MU01 — Odin, Far-Sighted" data-flag="@X" onclick="openSidebar('77_MU01 — Odin, Far-Sighted',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\116_MB01 — Hel, Keeper of Dishonored.png" id="116_MB01 — Hel, Keeper of Dishonored" data-flag="@X" onclick="openSidebar('116_MB01 — Hel, Keeper of Dishonored',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\155_MR01 — Thor, Smiter of Trees.png" id="155_MR01 — Thor, Smiter of Trees" data-flag="@X" onclick="openSidebar('155_MR01 — Thor, Smiter of Trees',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\194_MG01 — The Dark One.png" id="194_MG01 — The Dark One" data-flag="@X" onclick="openSidebar('194_MG01 — The Dark One',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\39_MW02.png" id="39_MW02" data-flag="@X" onclick="openSidebar('39_MW02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\78_MU02.png" id="78_MU02" data-flag="@X" onclick="openSidebar('78_MU02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\117_MB02.png" id="117_MB02" data-flag="@X" onclick="openSidebar('117_MB02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\156_MR02.png" id="156_MR02" data-flag="@X" onclick="openSidebar('156_MR02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\195_MG02.png" id="195_MG02" data-flag="@X" onclick="openSidebar('195_MG02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\40_RW01— Roy, The Leader.png" id="40_RW01— Roy, The Leader" data-flag="@X" onclick="openSidebar('40_RW01— Roy, The Leader',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\79_RU01 — Vaarsuvius, The Mage.png" id="79_RU01 — Vaarsuvius, The Mage" data-flag="@X" onclick="openSidebar('79_RU01 — Vaarsuvius, The Mage',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\118_RB01 — Belkar, The Ranger.png" id="118_RB01 — Belkar, The Ranger" data-flag="@X" onclick="openSidebar('118_RB01 — Belkar, The Ranger',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\157_RR01 — Haley, The Rogue.png" id="157_RR01 — Haley, The Rogue" data-flag="@X" onclick="openSidebar('157_RR01 — Haley, The Rogue',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\196_RG01 — Elan, The Bard.png" id="196_RG01 — Elan, The Bard" data-flag="@X" onclick="openSidebar('196_RG01 — Elan, The Bard',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\41_RW02 — Durkon, The Cleric.png" id="41_RW02 — Durkon, The Cleric" data-flag="@X" onclick="openSidebar('41_RW02 — Durkon, The Cleric',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\80_RU02.png" id="80_RU02" data-flag="@X" onclick="openSidebar('80_RU02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\119_RB02.png" id="119_RB02" data-flag="@X" onclick="openSidebar('119_RB02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\158_RR02.png" id="158_RR02" data-flag="@X" onclick="openSidebar('158_RR02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\197_RG02.png" id="197_RG02" data-flag="@X" onclick="openSidebar('197_RG02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\42_RW03.png" id="42_RW03" data-flag="@X" onclick="openSidebar('42_RW03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\81_RU03.png" id="81_RU03" data-flag="@X" onclick="openSidebar('81_RU03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\120_RB03.png" id="120_RB03" data-flag="@X" onclick="openSidebar('120_RB03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\159_RR03.png" id="159_RR03" data-flag="@X" onclick="openSidebar('159_RR03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\198_RG03.png" id="198_RG03" data-flag="@X" onclick="openSidebar('198_RG03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\43_RW04.png" id="43_RW04" data-flag="@X" onclick="openSidebar('43_RW04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\82_RU04.png" id="82_RU04" data-flag="@X" onclick="openSidebar('82_RU04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\121_RB04.png" id="121_RB04" data-flag="@X" onclick="openSidebar('121_RB04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\160_RR04.png" id="160_RR04" data-flag="@X" onclick="openSidebar('160_RR04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\199_RG04.png" id="199_RG04" data-flag="@X" onclick="openSidebar('199_RG04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\44_RW05.png" id="44_RW05" data-flag="@X" onclick="openSidebar('44_RW05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\83_RU05.png" id="83_RU05" data-flag="@X" onclick="openSidebar('83_RU05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\122_RB05.png" id="122_RB05" data-flag="@X" onclick="openSidebar('122_RB05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\161_RR05.png" id="161_RR05" data-flag="@X" onclick="openSidebar('161_RR05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\200_RG05.png" id="200_RG05" data-flag="@X" onclick="openSidebar('200_RG05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\45_RW06.png" id="45_RW06" data-flag="@X" onclick="openSidebar('45_RW06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\84_RU06.png" id="84_RU06" data-flag="@X" onclick="openSidebar('84_RU06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\123_RB06.png" id="123_RB06" data-flag="@X" onclick="openSidebar('123_RB06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\162_RR06.png" id="162_RR06" data-flag="@X" onclick="openSidebar('162_RR06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\201_RG06.png" id="201_RG06" data-flag="@X" onclick="openSidebar('201_RG06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\46_RW07.png" id="46_RW07" data-flag="@X" onclick="openSidebar('46_RW07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\85_RU07.png" id="85_RU07" data-flag="@X" onclick="openSidebar('85_RU07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\124_RB07.png" id="124_RB07" data-flag="@X" onclick="openSidebar('124_RB07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\163_RR07.png" id="163_RR07" data-flag="@X" onclick="openSidebar('163_RR07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\202_RG07.png" id="202_RG07" data-flag="@X" onclick="openSidebar('202_RG07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\47_UW01.png" id="47_UW01" data-flag="@X" onclick="openSidebar('47_UW01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\86_UU01.png" id="86_UU01" data-flag="@X" onclick="openSidebar('86_UU01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\125_UB01.png" id="125_UB01" data-flag="@X" onclick="openSidebar('125_UB01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\164_UR01.png" id="164_UR01" data-flag="@X" onclick="openSidebar('164_UR01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\203_UG01.png" id="203_UG01" data-flag="@X" onclick="openSidebar('203_UG01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\48_UW02.png" id="48_UW02" data-flag="@X" onclick="openSidebar('48_UW02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\87_UU02.png" id="87_UU02" data-flag="@X" onclick="openSidebar('87_UU02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\126_UB02.png" id="126_UB02" data-flag="@X" onclick="openSidebar('126_UB02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\165_UR02.png" id="165_UR02" data-flag="@X" onclick="openSidebar('165_UR02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\204_UG02.png" id="204_UG02" data-flag="@X" onclick="openSidebar('204_UG02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\49_UW03.png" id="49_UW03" data-flag="@X" onclick="openSidebar('49_UW03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\88_UU03.png" id="88_UU03" data-flag="@X" onclick="openSidebar('88_UU03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\127_UB03.png" id="127_UB03" data-flag="@X" onclick="openSidebar('127_UB03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\166_UR03.png" id="166_UR03" data-flag="@X" onclick="openSidebar('166_UR03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\205_UG03.png" id="205_UG03" data-flag="@X" onclick="openSidebar('205_UG03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\50_UW04.png" id="50_UW04" data-flag="@X" onclick="openSidebar('50_UW04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\89_UU04.png" id="89_UU04" data-flag="@X" onclick="openSidebar('89_UU04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\128_UB04.png" id="128_UB04" data-flag="@X" onclick="openSidebar('128_UB04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\167_UR04.png" id="167_UR04" data-flag="@X" onclick="openSidebar('167_UR04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\206_UG04.png" id="206_UG04" data-flag="@X" onclick="openSidebar('206_UG04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\51_UW05.png" id="51_UW05" data-flag="@X" onclick="openSidebar('51_UW05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\90_UU05.png" id="90_UU05" data-flag="@X" onclick="openSidebar('90_UU05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\129_UB05.png" id="129_UB05" data-flag="@X" onclick="openSidebar('129_UB05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\168_UR05.png" id="168_UR05" data-flag="@X" onclick="openSidebar('168_UR05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\207_UG05.png" id="207_UG05" data-flag="@X" onclick="openSidebar('207_UG05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\52_UW06.png" id="52_UW06" data-flag="@X" onclick="openSidebar('52_UW06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\91_UU06.png" id="91_UU06" data-flag="@X" onclick="openSidebar('91_UU06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\130_UB06.png" id="130_UB06" data-flag="@X" onclick="openSidebar('130_UB06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\169_UR06.png" id="169_UR06" data-flag="@X" onclick="openSidebar('169_UR06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\208_UG06.png" id="208_UG06" data-flag="@X" onclick="openSidebar('208_UG06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\53_UW07.png" id="53_UW07" data-flag="@X" onclick="openSidebar('53_UW07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\92_UU07.png" id="92_UU07" data-flag="@X" onclick="openSidebar('92_UU07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\131_UB07.png" id="131_UB07" data-flag="@X" onclick="openSidebar('131_UB07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\170_UR07.png" id="170_UR07" data-flag="@X" onclick="openSidebar('170_UR07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\209_UG07.png" id="209_UG07" data-flag="@X" onclick="openSidebar('209_UG07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\54_UW08.png" id="54_UW08" data-flag="@X" onclick="openSidebar('54_UW08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\93_UU08.png" id="93_UU08" data-flag="@X" onclick="openSidebar('93_UU08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\132_UB08.png" id="132_UB08" data-flag="@X" onclick="openSidebar('132_UB08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\171_UR08.png" id="171_UR08" data-flag="@X" onclick="openSidebar('171_UR08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\210_UG08.png" id="210_UG08" data-flag="@X" onclick="openSidebar('210_UG08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\55_UW09.png" id="55_UW09" data-flag="@X" onclick="openSidebar('55_UW09',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\94_UU09.png" id="94_UU09" data-flag="@X" onclick="openSidebar('94_UU09',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\133_UB09.png" id="133_UB09" data-flag="@X" onclick="openSidebar('133_UB09',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\172_UR09.png" id="172_UR09" data-flag="@X" onclick="openSidebar('172_UR09',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\211_UG09.png" id="211_UG09" data-flag="@X" onclick="openSidebar('211_UG09',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\56_UW10.png" id="56_UW10" data-flag="@X" onclick="openSidebar('56_UW10',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\95_UU10.png" id="95_UU10" data-flag="@X" onclick="openSidebar('95_UU10',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\134_UB10.png" id="134_UB10" data-flag="@X" onclick="openSidebar('134_UB10',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\173_UR10.png" id="173_UR10" data-flag="@X" onclick="openSidebar('173_UR10',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\212_UG10.png" id="212_UG10" data-flag="@X" onclick="openSidebar('212_UG10',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\57_UW11.png" id="57_UW11" data-flag="@X" onclick="openSidebar('57_UW11',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\96_UU11.png" id="96_UU11" data-flag="@X" onclick="openSidebar('96_UU11',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\135_UB11.png" id="135_UB11" data-flag="@X" onclick="openSidebar('135_UB11',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\174_UR11.png" id="174_UR11" data-flag="@X" onclick="openSidebar('174_UR11',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\213_UG11.png" id="213_UG11" data-flag="@X" onclick="openSidebar('213_UG11',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\19_CW01 — Conjured Pup.png" id="19_CW01 — Conjured Pup" data-flag="@X" onclick="openSidebar('19_CW01 — Conjured Pup',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\58_CU01 — Animal Messenger.png" id="58_CU01 — Animal Messenger" data-flag="@X" onclick="openSidebar('58_CU01 — Animal Messenger',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\97_CB01.png" id="97_CB01" data-flag="@X" onclick="openSidebar('97_CB01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\136_CR01.png" id="136_CR01" data-flag="@X" onclick="openSidebar('136_CR01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\175_CG01.png" id="175_CG01" data-flag="@X" onclick="openSidebar('175_CG01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\20_CW02 — Azure City Guard.png" id="20_CW02 — Azure City Guard" data-flag="@X" onclick="openSidebar('20_CW02 — Azure City Guard',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\59_CU02 — Bandit Sorceress.png" id="59_CU02 — Bandit Sorceress" data-flag="@X" onclick="openSidebar('59_CU02 — Bandit Sorceress',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\98_CB02.png" id="98_CB02" data-flag="@X" onclick="openSidebar('98_CB02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\137_CR02.png" id="137_CR02" data-flag="@X" onclick="openSidebar('137_CR02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\176_CG02.png" id="176_CG02" data-flag="@X" onclick="openSidebar('176_CG02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\21_CW03 — Monk Adventurer.png" id="21_CW03 — Monk Adventurer" data-flag="@X" onclick="openSidebar('21_CW03 — Monk Adventurer',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\60_CU03 — Priestess of Hoder.png" id="60_CU03 — Priestess of Hoder" data-flag="@X" onclick="openSidebar('60_CU03 — Priestess of Hoder',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\99_CB03.png" id="99_CB03" data-flag="@X" onclick="openSidebar('99_CB03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\138_CR03.png" id="138_CR03" data-flag="@X" onclick="openSidebar('138_CR03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\177_CG03.png" id="177_CG03" data-flag="@X" onclick="openSidebar('177_CG03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\22_CW04 — Death Squad Reporter.png" id="22_CW04 — Death Squad Reporter" data-flag="@X" onclick="openSidebar('22_CW04 — Death Squad Reporter',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\61_CU04 — Gnomish Security Force.png" id="61_CU04 — Gnomish Security Force" data-flag="@X" onclick="openSidebar('61_CU04 — Gnomish Security Force',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\100_CB04.png" id="100_CB04" data-flag="@X" onclick="openSidebar('100_CB04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\139_CR04.png" id="139_CR04" data-flag="@X" onclick="openSidebar('139_CR04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\178_CG04.png" id="178_CG04" data-flag="@X" onclick="openSidebar('178_CG04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\23_CW05 — Dwarven Treeslayer.png" id="23_CW05 — Dwarven Treeslayer" data-flag="@X" onclick="openSidebar('23_CW05 — Dwarven Treeslayer',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\62_CU05 — Elvish Baker.png" id="62_CU05 — Elvish Baker" data-flag="@X" onclick="openSidebar('62_CU05 — Elvish Baker',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\101_CB05.png" id="101_CB05" data-flag="@X" onclick="openSidebar('101_CB05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\140_CR05.png" id="140_CR05" data-flag="@X" onclick="openSidebar('140_CR05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\179_CG05.png" id="179_CG05" data-flag="@X" onclick="openSidebar('179_CG05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\24_CW06 — Azurite Swordsmith.png" id="24_CW06 — Azurite Swordsmith" data-flag="@X" onclick="openSidebar('24_CW06 — Azurite Swordsmith',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\63_CU06 — Prepared Rogue.png" id="63_CU06 — Prepared Rogue" data-flag="@X" onclick="openSidebar('63_CU06 — Prepared Rogue',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\102_CB06.png" id="102_CB06" data-flag="@X" onclick="openSidebar('102_CB06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\141_CR06.png" id="141_CR06" data-flag="@X" onclick="openSidebar('141_CR06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\180_CG06.png" id="180_CG06" data-flag="@X" onclick="openSidebar('180_CG06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\25_CW07 — Court Wizard.png" id="25_CW07 — Court Wizard" data-flag="@X" onclick="openSidebar('25_CW07 — Court Wizard',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\64_CU07 — Emotional Spirits.png" id="64_CU07 — Emotional Spirits" data-flag="@X" onclick="openSidebar('64_CU07 — Emotional Spirits',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\103_CB07.png" id="103_CB07" data-flag="@X" onclick="openSidebar('103_CB07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\142_CR07.png" id="142_CR07" data-flag="@X" onclick="openSidebar('142_CR07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\181_CG07.png" id="181_CG07" data-flag="@X" onclick="openSidebar('181_CG07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\26_CW08 — Village Cleric.png" id="26_CW08 — Village Cleric" data-flag="@X" onclick="openSidebar('26_CW08 — Village Cleric',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\65_CU08 — Elvish Wizard.png" id="65_CU08 — Elvish Wizard" data-flag="@X" onclick="openSidebar('65_CU08 — Elvish Wizard',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\104_CB08.png" id="104_CB08" data-flag="@X" onclick="openSidebar('104_CB08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\143_CR08.png" id="143_CR08" data-flag="@X" onclick="openSidebar('143_CR08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\182_CG08.png" id="182_CG08" data-flag="@X" onclick="openSidebar('182_CG08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\27_CW09 — Azurite Captain.png" id="27_CW09 — Azurite Captain" data-flag="@X" onclick="openSidebar('27_CW09 — Azurite Captain',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\66_CU09 — Magus Headmaster.png" id="66_CU09 — Magus Headmaster" data-flag="@X" onclick="openSidebar('66_CU09 — Magus Headmaster',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\105_CB09 — Something Necromancer.png" id="105_CB09 — Something Necromancer" data-flag="@X" onclick="openSidebar('105_CB09 — Something Necromancer',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\144_CR09.png" id="144_CR09" data-flag="@X" onclick="openSidebar('144_CR09',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\183_CG09.png" id="183_CG09" data-flag="@X" onclick="openSidebar('183_CG09',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\28_CW10 — Beauracratic Deva.png" id="28_CW10 — Beauracratic Deva" data-flag="@X" onclick="openSidebar('28_CW10 — Beauracratic Deva',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\67_CU10 — Hold Person.png" id="67_CU10 — Hold Person" data-flag="@X" onclick="openSidebar('67_CU10 — Hold Person',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\106_CB10.png" id="106_CB10" data-flag="@X" onclick="openSidebar('106_CB10',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\145_CR10.png" id="145_CR10" data-flag="@X" onclick="openSidebar('145_CR10',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\184_CG10.png" id="184_CG10" data-flag="@X" onclick="openSidebar('184_CG10',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\29_CW11 — Stonecreed Goliath.png" id="29_CW11 — Stonecreed Goliath" data-flag="@X" onclick="openSidebar('29_CW11 — Stonecreed Goliath',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\68_CU11 — Wand of Flight.png" id="68_CU11 — Wand of Flight" data-flag="@X" onclick="openSidebar('68_CU11 — Wand of Flight',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\107_CB11.png" id="107_CB11" data-flag="@X" onclick="openSidebar('107_CB11',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\146_CR11.png" id="146_CR11" data-flag="@X" onclick="openSidebar('146_CR11',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\185_CG11.png" id="185_CG11" data-flag="@X" onclick="openSidebar('185_CG11',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\30_CW12 — Ghost Maid.png" id="30_CW12 — Ghost Maid" data-flag="@X" onclick="openSidebar('30_CW12 — Ghost Maid',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\69_CU12 — Detect Magic.png" id="69_CU12 — Detect Magic" data-flag="@X" onclick="openSidebar('69_CU12 — Detect Magic',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\108_CB12.png" id="108_CB12" data-flag="@X" onclick="openSidebar('108_CB12',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\147_CR12.png" id="147_CR12" data-flag="@X" onclick="openSidebar('147_CR12',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\186_CG12.png" id="186_CG12" data-flag="@X" onclick="openSidebar('186_CG12',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\31_CW13 — Mark of Justice.png" id="31_CW13 — Mark of Justice" data-flag="@X" onclick="openSidebar('31_CW13 — Mark of Justice',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\70_CU13 — Celestial Tree Sloth Attack.png" id="70_CU13 — Celestial Tree Sloth Attack" data-flag="@X" onclick="openSidebar('70_CU13 — Celestial Tree Sloth Attack',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\109_CB13.png" id="109_CB13" data-flag="@X" onclick="openSidebar('109_CB13',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\148_CR13.png" id="148_CR13" data-flag="@X" onclick="openSidebar('148_CR13',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\187_CG13.png" id="187_CG13" data-flag="@X" onclick="openSidebar('187_CG13',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\32_CW14 — Adamantine Blades.png" id="32_CW14 — Adamantine Blades" data-flag="@X" onclick="openSidebar('32_CW14 — Adamantine Blades',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\71_CU14 — Enthralling Speech.png" id="71_CU14 — Enthralling Speech" data-flag="@X" onclick="openSidebar('71_CU14 — Enthralling Speech',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\110_CB14.png" id="110_CB14" data-flag="@X" onclick="openSidebar('110_CB14',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\149_CR14.png" id="149_CR14" data-flag="@X" onclick="openSidebar('149_CR14',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\188_CG14.png" id="188_CG14" data-flag="@X" onclick="openSidebar('188_CG14',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\33_CW15 — Resolute Strike.png" id="33_CW15 — Resolute Strike" data-flag="@X" onclick="openSidebar('33_CW15 — Resolute Strike',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\72_CU15 — Prepared Counterspell.png" id="72_CU15 — Prepared Counterspell" data-flag="@X" onclick="openSidebar('72_CU15 — Prepared Counterspell',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\111_CB15.png" id="111_CB15" data-flag="@X" onclick="openSidebar('111_CB15',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\150_CR15.png" id="150_CR15" data-flag="@X" onclick="openSidebar('150_CR15',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\189_CG15.png" id="189_CG15" data-flag="@X" onclick="openSidebar('189_CG15',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\34_CW16 — Smite Evil.png" id="34_CW16 — Smite Evil" data-flag="@X" onclick="openSidebar('34_CW16 — Smite Evil',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\73_CU16 — Soft Counter.png" id="73_CU16 — Soft Counter" data-flag="@X" onclick="openSidebar('73_CU16 — Soft Counter',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\112_CB16.png" id="112_CB16" data-flag="@X" onclick="openSidebar('112_CB16',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\151_CR16.png" id="151_CR16" data-flag="@X" onclick="openSidebar('151_CR16',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\190_CG16.png" id="190_CG16" data-flag="@X" onclick="openSidebar('190_CG16',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\35_CW17 — Spellsplinter Maneuver.png" id="35_CW17 — Spellsplinter Maneuver" data-flag="@X" onclick="openSidebar('35_CW17 — Spellsplinter Maneuver',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\74_CU17.png" id="74_CU17" data-flag="@X" onclick="openSidebar('74_CU17',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\113_CB17.png" id="113_CB17" data-flag="@X" onclick="openSidebar('113_CB17',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\152_CR17.png" id="152_CR17" data-flag="@X" onclick="openSidebar('152_CR17',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\191_CG17 — Bardic Song of Freedom.png" id="191_CG17 — Bardic Song of Freedom" data-flag="@X" onclick="openSidebar('191_CG17 — Bardic Song of Freedom',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\36_CW18 —.png" id="36_CW18 —" data-flag="@X" onclick="openSidebar('36_CW18 —',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\75_CU18.png" id="75_CU18" data-flag="@X" onclick="openSidebar('75_CU18',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\114_CB18.png" id="114_CB18" data-flag="@X" onclick="openSidebar('114_CB18',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\153_CR18.png" id="153_CR18" data-flag="@X" onclick="openSidebar('153_CR18',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\192_CG18.png" id="192_CG18" data-flag="@X" onclick="openSidebar('192_CG18',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\37_CW19 — Roy's Archon.png" id="37_CW19 — Roys Archon" data-flag="@X" onclick="openSidebar('37_CW19 — Roys Archon',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\76_CU19 V's Raven.png" id="76_CU19 Vs Raven" data-flag="@X" onclick="openSidebar('76_CU19 Vs Raven',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\115_CB19 — Mr. Scruffy.png" id="115_CB19 — Mr. Scruffy" data-flag="@X" onclick="openSidebar('115_CB19 — Mr. Scruffy',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\154_CR19 — Kubota's Imp.png" id="154_CR19 — Kubotas Imp" data-flag="@X" onclick="openSidebar('154_CR19 — Kubotas Imp',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\193_CG19 — Polymorphed Allosaurus.png" id="193_CG19 — Polymorphed Allosaurus" data-flag="@X" onclick="openSidebar('193_CG19 — Polymorphed Allosaurus',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\215_RM01.png" id="215_RM01" data-flag="@X" onclick="openSidebar('215_RM01',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\227_UM01.png" id="227_UM01" data-flag="@X" onclick="openSidebar('227_UM01',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\1_MX01.png" id="1_MX01" data-flag="@X" onclick="openSidebar('1_MX01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\2_MX02.png" id="2_MX02" data-flag="@X" onclick="openSidebar('2_MX02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\3_MX03.png" id="3_MX03" data-flag="@X" onclick="openSidebar('3_MX03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\4_MX04.png" id="4_MX04" data-flag="@X" onclick="openSidebar('4_MX04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\5_MX05.png" id="5_MX05" data-flag="@X" onclick="openSidebar('5_MX05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\6_RX01.png" id="6_RX01" data-flag="@X" onclick="openSidebar('6_RX01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\7_RX02.png" id="7_RX02" data-flag="@X" onclick="openSidebar('7_RX02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\8_RX03.png" id="8_RX03" data-flag="@X" onclick="openSidebar('8_RX03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\9_RX04.png" id="9_RX04" data-flag="@X" onclick="openSidebar('9_RX04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\10_RX05.png" id="10_RX05" data-flag="@X" onclick="openSidebar('10_RX05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\11_RX06.png" id="11_RX06" data-flag="@X" onclick="openSidebar('11_RX06',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\12_RX07.png" id="12_RX07" data-flag="@X" onclick="openSidebar('12_RX07',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\13_RX08.png" id="13_RX08" data-flag="@X" onclick="openSidebar('13_RX08',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\14_UX01.png" id="14_UX01" data-flag="@X" onclick="openSidebar('14_UX01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\15_UX02.png" id="15_UX02" data-flag="@X" onclick="openSidebar('15_UX02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\16_UX03.png" id="16_UX03" data-flag="@X" onclick="openSidebar('16_UX03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\17_UX04.png" id="17_UX04" data-flag="@X" onclick="openSidebar('17_UX04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\18_UX05.png" id="18_UX05" data-flag="@X" onclick="openSidebar('18_UX05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\239_UA01.png" id="239_UA01" data-flag="@X" onclick="openSidebar('239_UA01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\240_UA02.png" id="240_UA02" data-flag="@X" onclick="openSidebar('240_UA02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\241_UA03.png" id="241_UA03" data-flag="@X" onclick="openSidebar('241_UA03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\242_UA04.png" id="242_UA04" data-flag="@X" onclick="openSidebar('242_UA04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\243_UA05.png" id="243_UA05" data-flag="@X" onclick="openSidebar('243_UA05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\234_CA01.png" id="234_CA01" data-flag="@X" onclick="openSidebar('234_CA01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\235_CA02.png" id="235_CA02" data-flag="@X" onclick="openSidebar('235_CA02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\236_CA03.png" id="236_CA03" data-flag="@X" onclick="openSidebar('236_CA03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\237_CA04.png" id="237_CA04" data-flag="@X" onclick="openSidebar('237_CA04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\238_CA05.png" id="238_CA05" data-flag="@X" onclick="openSidebar('238_CA05',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="img\er.png" id="er" data-flag="@E" onclick="openSidebar('er',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\245_UL01.png" id="245_UL01" data-flag="@X" onclick="openSidebar('245_UL01',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\246_UL02.png" id="246_UL02" data-flag="@X" onclick="openSidebar('246_UL02',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\247_UL03.png" id="247_UL03" data-flag="@X" onclick="openSidebar('247_UL03',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\248_UL04.png" id="248_UL04" data-flag="@X" onclick="openSidebar('248_UL04',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\249_UL05.png" id="249_UL05" data-flag="@X" onclick="openSidebar('249_UL05',false)"></div>
+			<div class="container"><img alt="sets\OOTS-files\img\244_CL01.png" id="244_CL01" data-flag="@X" onclick="openSidebar('244_CL01',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+			<div class="container"><img alt="img\e.png" id="e" data-flag="@E" onclick="openSidebar('e',false)"></div>
+	</div>
+</div>
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-container">
+			<img id="sidebar_img" class="sidebar-img" src="img/er.png">
+			<img id="sidebar_h_img" class="sidebar-h-img">
+			<button class="flip-btn" id="sidebar-flip-btn" onclick="imgFlip('sidebar_img')"></button>
+		</div>
+		<button class="close-btn" onclick="closeSidebar()"></button>
+	</div>
+	<div class="footer"></div>
+
+	<script>
+	const delay = ms => new Promise(res => setTimeout(res, ms));
+		let specialchars = "";
+
+	document.addEventListener('DOMContentLoaded', async function() {
+		await fetch('/lists/all-cards.json')
+					.then(response => response.json())
+					.then(json => {
+						card_list = json;
+				}).catch(error => console.error('Error:', error));
+
+				await fetch('/resources/replacechars.txt')
+					.then(response => response.text())
+					.then(text => {
+						specialchars = text; 
+				}).catch(error => console.error('Error:', error));
+
+				card_list_arrayified = card_list.cards;
+
+		preloadImgs = document.getElementsByClassName('preload-hidden');
+		
+		let images_loaded = [];
+
+		do {
+			await delay(100);
+			images_loaded = []
+			for (const img of preloadImgs)
+			{
+				images_loaded.push(isImageOk(img));
+			}
+		}
+		while (images_loaded.includes(false));
+
+		
+		loadImages();
+	});
+
+	function isImageOk(img) {
+		if (!img.complete || img.naturalWidth == 0) {
+			return false;
+		}
+
+		return true;
+	}
+
+	function loadImages() {
+		const images = document.querySelectorAll('.grid-container img');
+
+		images.forEach(img => {
+			const flag = img.getAttribute('data-flag');
+
+			if (flag === '@N') {
+				img.src = 'img/card_back.png';
+				img.removeAttribute("onclick");
+				img.style.cursor = 'default';
+			}
+			else
+			{
+				img.src = img.alt;
+
+				if (flag === '@E') {
+					img.removeAttribute("onclick");
+					img.style.cursor = 'default';
+				}
+			}
+
+			img.style.visibility = 'visible';
+		});
+	}
+
+	window.addEventListener('resize', function(event) {
+		setSidebarTop();
+	}, true);
+
+	function setSidebarTop() {
+		let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+		let sh = document.getElementById('sidebar').offsetHeight;
+		let height = 100 * ((vh - sh) / 2) / vh;
+		document.getElementById('sidebar').style.top = height + '%';
+	}
+
+	let horizontal = false;
+
+	function imgFlip(num) {
+		tmp = document.getElementById(num).src;
+		document.getElementById(num).src = document.getElementById(num).dataset.alt_src;
+		document.getElementById(num).dataset.alt_src = tmp;
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		if (horizontal && rotated_img.style.display == 'none')
+		{
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+	}
+
+	function openSidebar(id, h=false) {
+		horizontal = h;
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+		
+		document.getElementById('sidebar').style.display = 'grid';
+
+		const rotated_img = document.getElementById('sidebar_h_img');
+		const sidebar_img = document.getElementById('sidebar_img');
+
+		sidebar_img.src = document.getElementById(id).src;
+
+		if (horizontal)
+		{
+			rotated_img.src = document.getElementById(id).src;
+			rotated_img.style.display = "block";
+			sidebar_img.style.filter = "blur(2px) brightness(0.7)";
+		}
+		else
+		{
+			rotated_img.style.display = "none";
+			sidebar_img.style.filter = "";
+		}
+
+		if (document.getElementById(id).dataset.alt_src)
+		{
+			document.getElementById('sidebar_img').dataset.alt_src = document.getElementById(id).dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'block';
+		}
+		else
+		{
+			delete document.getElementById('sidebar_img').dataset.alt_src;
+			document.getElementById('sidebar-flip-btn').style.display = 'none';
+		}
+		document.getElementById('main-content').style.width = '60%';
+		
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+		setSidebarTop();
+	}
+
+	function closeSidebar() {
+		scroll_pct = window.scrollY / document.documentElement.scrollHeight;
+
+		document.getElementById('sidebar').style.display = 'none';
+		document.getElementById('main-content').style.width = '100%';
+		
+
+		scroll_pos = scroll_pct * document.documentElement.scrollHeight;
+		window.scrollTo(window.scrollX, scroll_pos);
+	}
+
+	document.getElementById("search").addEventListener("keypress", function(event) {
+			if (event.key === "Enter") {
+				event.preventDefault();
+				search();
+			}
+		});
+
+		function search() {
+			window.location = ("/search?search=" + document.getElementById("search").value);
+		}
+
+		function randomCard() {
+				let i = Math.floor(Math.random() * (card_list_arrayified.length + 1));
+				let card_name = card_list_arrayified[i].card_name;
+				for (const char of specialchars)
+				{
+					card_name = card_name.replaceAll(char, "");
+				}
+
+				window.location = ('/cards/' + card_list_arrayified[i].set + '/' + card_list_arrayified[i].number + '_' + card_name);
+			}
+	</script>
+</body>
+</html>
